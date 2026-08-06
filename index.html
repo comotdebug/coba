@@ -4,271 +4,787 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Azam Studio</title>
+    <title>AZAM — Creative Studio</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080909;
+            color: #f5f5f5;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 90%;
+            max-width: 1100px;
+
+            margin-top: 20px;
+            padding: 14px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(15, 16, 16, 0.75);
+            border: 1px solid #292b2b;
+            border-radius: 50px;
+
+            backdrop-filter: blur(20px);
+
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: "Space Grotesk";
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #b6ff00;
+        }
+
+        .links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .links a {
+            color: #888;
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        .links a:hover {
+            color: #b6ff00;
+        }
+
+        .contact-btn {
+            padding: 9px 17px;
+            background: #b6ff00;
+            color: #050505;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            max-width: 1100px;
+            width: 90%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .tag {
+            color: #b6ff00;
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: "Space Grotesk";
+            font-size: clamp(55px, 7vw, 92px);
+            line-height: .9;
+            letter-spacing: -5px;
+        }
+
+        h1 span {
+            color: #b6ff00;
+        }
+
+        .hero-text p {
+            color: #777;
+            max-width: 500px;
+            margin-top: 30px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 13px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .primary {
+            background: #b6ff00;
+            color: #050505;
+        }
+
+        .secondary {
+            border: 1px solid #333;
+        }
+
+        /* VISUAL */
+
+        .visual {
+            height: 500px;
+            border-radius: 30px;
+            border: 1px solid #292b2b;
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(circle at 50% 50%, #222 0%, #101111 45%, #080909 75%);
+        }
+
+        .orb {
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
+
+            border: 1px solid #555;
+
+            box-shadow:
+                0 0 100px rgba(182,255,0,.08);
+        }
+
+        .orb::before {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            border: 1px solid #444;
+            transform: translate(40px,40px);
+        }
+
+        .orb::after {
+            content: "";
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 1px solid #b6ff00;
+            transform: translate(80px,80px);
+        }
+
+        .glass {
+            position: absolute;
+            padding: 20px;
+
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.12);
+            backdrop-filter: blur(15px);
+
+            border-radius: 16px;
+        }
+
+        .glass h2 {
+            font-family: "Space Grotesk";
+            font-size: 30px;
+            line-height: .9;
+            margin: 8px 0;
+        }
+
+        .glass small {
+            color: #b6ff00;
+            letter-spacing: 2px;
+        }
+
+        .glass.one {
+            top: 45px;
+            left: 30px;
+            transform: rotate(-7deg);
+        }
+
+        .glass.two {
+            right: 25px;
+            bottom: 50px;
+            color: #aaa;
+            font-size: 12px;
+            transform: rotate(6deg);
+        }
+
+        /* GENERAL */
+
+        section {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 120px 0;
+        }
+
+        .label {
+            color: #555;
+            font-size: 10px;
+            letter-spacing: 3px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #222;
+            margin-bottom: 60px;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .about h2,
+        .projects h2 {
+            font-family: "Space Grotesk";
+            font-size: clamp(40px, 5vw, 65px);
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .about h2 span,
+        .projects h2 span {
+            color: #b6ff00;
+        }
+
+        .about p {
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* STATS */
+
+        .stats {
+            margin-top: 70px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            border-top: 1px solid #222;
+        }
+
+        .stat {
+            padding: 30px 0;
+            border-right: 1px solid #222;
+        }
+
+        .stat:not(:first-child) {
+            padding-left: 30px;
+        }
+
+        .stat h3 {
+            font-family: "Space Grotesk";
+            font-size: 40px;
+        }
+
+        .stat p {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* PROJECT */
+
+        .project-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 40px;
+        }
+
+        .project-title p {
+            color: #666;
+            max-width: 280px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
+
+        .project {
+            background: #101111;
+            border: 1px solid #242626;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: .3s;
+        }
+
+        .project:hover {
+            transform: translateY(-7px);
+            border-color: #555;
+        }
+
+        .project:first-child {
+            grid-column: span 2;
+        }
+
+        .project-img {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(135deg,#111,#252525);
+        }
+
+        .project:nth-child(2) .project-img {
+            background:
+                linear-gradient(135deg,#111b08,#202020);
+        }
+
+        .project:nth-child(3) .project-img {
+            background:
+                linear-gradient(135deg,#10151b,#202020);
+        }
+
+        .number {
+            font-family: "Space Grotesk";
+            font-size: 100px;
+            color: rgba(255,255,255,.06);
+        }
+
+        .project-info {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .project-info h3 {
+            font-family: "Space Grotesk";
+        }
+
+        .project-info p {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .arrow {
+            width: 35px;
+            height: 35px;
+
+            border: 1px solid #333;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            border-top: 1px solid #222;
+        }
+
+        .skill {
+            padding: 25px 0;
+            border-bottom: 1px solid #222;
+
+            display: grid;
+            grid-template-columns: 60px 1fr 150px;
+            align-items: center;
+
+            transition: .3s;
+        }
+
+        .skill:hover {
+            padding-left: 15px;
+        }
+
+        .skill span {
+            color: #b6ff00;
+            font-size: 11px;
+        }
+
+        .skill h3 {
+            font-family: "Space Grotesk";
+            font-size: 24px;
+        }
+
+        .skill p {
+            color: #666;
+            font-size: 11px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            text-align: center;
+            padding: 180px 0;
+        }
+
+        .contact h2 {
+            font-family: "Space Grotesk";
+            font-size: clamp(45px,7vw,85px);
+            line-height: .95;
+            letter-spacing: -5px;
+            margin-bottom: 40px;
+        }
+
+        .contact h2 span {
+            color: #b6ff00;
+        }
+
+        /* FOOTER */
+
+        footer {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+
+            border-top: 1px solid #222;
+
+            padding: 30px 0;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            color: #555;
+            font-size: 11px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:800px) {
+
+            .links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 120px;
+            }
+
+            .visual {
+                height: 400px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat,
+            .stat:not(:first-child) {
+                padding: 25px 0;
+                border-right: none;
+                border-bottom: 1px solid #222;
+            }
+
+            .project-title {
+                display: block;
+            }
+
+            .project-title p {
+                margin-top: 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project:first-child {
+                grid-column: span 1;
+            }
+
+            .skill {
+                grid-template-columns: 45px 1fr;
+            }
+
+            .skill p {
+                grid-column: 2;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
+    <nav>
         <div class="logo">AZ<span>.</span></div>
 
-        <nav>
+        <div class="links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#project">Project</a>
-            <a href="#contact">Contact</a>
-        </nav>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+        </div>
 
-        <a href="#contact" class="nav-button">Let's Talk</a>
-    </header>
+        <a href="#contact" class="contact-btn">Let's Talk</a>
+    </nav>
 
 
-    <!-- HERO -->
-    <main>
+    <section class="hero" id="home">
 
-        <section class="hero" id="home">
+        <div class="hero-text">
 
-            <div class="hero-text">
+            <div class="tag">CREATIVE DIGITAL STUDIO</div>
 
-                <p class="small-title">WELCOME TO MY WEBSITE</p>
+            <h1>
+                Build.<br>
+                Design.<br>
+                <span>Create.</span>
+            </h1>
 
-                <h1>
-                    Creative
-                    <span>Digital</span>
-                    Experience.
-                </h1>
+            <p>
+                Saya seorang pelajar RPL yang suka membuat
+                website, UI/UX, fotografi, dan berbagai
+                eksperimen digital.
+            </p>
 
-                <p class="description">
-                    Saya seorang pelajar RPL yang tertarik dengan
-                    UI/UX Design, Web Development, Photography,
-                    dan dunia kreatif digital.
-                </p>
+            <div class="buttons">
+                <a href="#projects" class="btn primary">
+                    View Projects ↗
+                </a>
 
-                <div class="hero-buttons">
-                    <a href="#project" class="primary-button">
-                        Explore Project
-                    </a>
-
-                    <a href="#about" class="secondary-button">
-                        About Me
-                    </a>
-                </div>
-
+                <a href="#about" class="btn secondary">
+                    About Me
+                </a>
             </div>
 
+        </div>
 
-            <div class="hero-card">
 
-                <div class="circle"></div>
+        <div class="visual">
 
-                <div class="floating-card card-one">
-                    <span>✦</span>
-                    UI / UX
-                </div>
+            <div class="orb"></div>
 
-                <div class="floating-card card-two">
-                    <span>◈</span>
-                    Developer
-                </div>
-
-                <div class="profile-box">
-                    <p>CREATIVE</p>
-                    <h2>AZAM<br>STUDIO</h2>
-                    <span>DESIGN • CODE • CREATE</span>
-                </div>
-
+            <div class="glass one">
+                <small>AZAM</small>
+                <h2>STUDIO</h2>
+                <span>DESIGN • CODE</span>
             </div>
 
-        </section>
-
-
-        <!-- ABOUT -->
-        <section class="about" id="about">
-
-            <div class="section-label">01 — ABOUT</div>
-
-            <div class="about-content">
-
-                <h2>
-                    Turning ideas into
-                    <span>digital experiences.</span>
-                </h2>
-
-                <p>
-                    Saya suka menggabungkan desain yang menarik
-                    dengan teknologi untuk membuat website yang
-                    bukan cuma terlihat bagus, tapi juga nyaman digunakan.
-                </p>
-
+            <div class="glass two">
+                ✦ UI / UX &nbsp; ◇ DEVELOPMENT
             </div>
 
-            <div class="stats">
+        </div>
 
-                <div class="stat">
-                    <h3>02+</h3>
-                    <p>Years Learning</p>
-                </div>
-
-                <div class="stat">
-                    <h3>10+</h3>
-                    <p>Projects</p>
-                </div>
-
-                <div class="stat">
-                    <h3>04</h3>
-                    <p>Creative Skills</p>
-                </div>
-
-            </div>
-
-        </section>
+    </section>
 
 
-        <!-- PROJECT -->
-        <section class="projects" id="project">
+    <section class="about" id="about">
 
-            <div class="section-label">02 — PROJECTS</div>
+        <div class="label">01 — ABOUT ME</div>
 
-            <div class="project-heading">
-                <h2>Selected <span>Works.</span></h2>
-
-                <p>
-                    Beberapa project latihan dan eksperimen
-                    yang pernah dibuat.
-                </p>
-            </div>
-
-
-            <div class="project-grid">
-
-                <article class="project-card large">
-
-                    <div class="project-image project-one">
-                        <span>01</span>
-                    </div>
-
-                    <div class="project-info">
-                        <div>
-                            <h3>Creative Portfolio</h3>
-                            <p>Website Portfolio</p>
-                        </div>
-
-                        <a href="#">↗</a>
-                    </div>
-
-                </article>
-
-
-                <article class="project-card">
-
-                    <div class="project-image project-two">
-                        <span>02</span>
-                    </div>
-
-                    <div class="project-info">
-                        <div>
-                            <h3>Modern Dashboard</h3>
-                            <p>UI / UX Design</p>
-                        </div>
-
-                        <a href="#">↗</a>
-                    </div>
-
-                </article>
-
-
-                <article class="project-card">
-
-                    <div class="project-image project-three">
-                        <span>03</span>
-                    </div>
-
-                    <div class="project-info">
-                        <div>
-                            <h3>Photography</h3>
-                            <p>Visual Project</p>
-                        </div>
-
-                        <a href="#">↗</a>
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- SKILLS -->
-        <section class="skills">
-
-            <div class="section-label">03 — SKILLS</div>
-
-            <div class="skill-list">
-
-                <div class="skill">
-                    <span>01</span>
-                    <h3>HTML & CSS</h3>
-                    <p>Web Development</p>
-                </div>
-
-                <div class="skill">
-                    <span>02</span>
-                    <h3>UI / UX Design</h3>
-                    <p>Interface Design</p>
-                </div>
-
-                <div class="skill">
-                    <span>03</span>
-                    <h3>Photography</h3>
-                    <p>Visual Storytelling</p>
-                </div>
-
-                <div class="skill">
-                    <span>04</span>
-                    <h3>Video Editing</h3>
-                    <p>Creative Content</p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- CONTACT -->
-        <section class="contact" id="contact">
-
-            <p class="small-title">HAVE A PROJECT?</p>
+        <div class="about-grid">
 
             <h2>
-                Let's create something
-                <span>great.</span>
+                Turning ideas into
+                <span>digital experiences.</span>
             </h2>
 
-            <a href="mailto:hello@example.com" class="primary-button">
-                Contact Me ↗
-            </a>
+            <p>
+                Saya suka menggabungkan desain dan teknologi
+                untuk membuat website yang bukan cuma terlihat
+                keren, tapi juga nyaman digunakan.
+                <br><br>
+                Fokus saya saat ini adalah Web Development,
+                UI/UX Design, dan Creative Media.
+            </p>
 
-        </section>
-
-    </main>
+        </div>
 
 
-    <!-- FOOTER -->
+        <div class="stats">
+
+            <div class="stat">
+                <h3>02+</h3>
+                <p>Years Learning</p>
+            </div>
+
+            <div class="stat">
+                <h3>10+</h3>
+                <p>Projects</p>
+            </div>
+
+            <div class="stat">
+                <h3>04</h3>
+                <p>Creative Skills</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="projects" id="projects">
+
+        <div class="label">02 — SELECTED PROJECTS</div>
+
+        <div class="project-title">
+
+            <h2>
+                My <span>Works.</span>
+            </h2>
+
+            <p>
+                Kumpulan project latihan,
+                eksperimen desain, dan karya digital.
+            </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+            <div class="project">
+
+                <div class="project-img">
+                    <div class="number">01</div>
+                </div>
+
+                <div class="project-info">
+                    <div>
+                        <h3>Portfolio Website</h3>
+                        <p>Web Development</p>
+                    </div>
+
+                    <div class="arrow">↗</div>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-img">
+                    <div class="number">02</div>
+                </div>
+
+                <div class="project-info">
+                    <div>
+                        <h3>Dashboard UI</h3>
+                        <p>UI / UX Design</p>
+                    </div>
+
+                    <div class="arrow">↗</div>
+                </div>
+
+            </div>
+
+
+            <div class="project">
+
+                <div class="project-img">
+                    <div class="number">03</div>
+                </div>
+
+                <div class="project-info">
+                    <div>
+                        <h3>Creative Media</h3>
+                        <p>Photography</p>
+                    </div>
+
+                    <div class="arrow">↗</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="skills" id="skills">
+
+        <div class="label">03 — SKILLS</div>
+
+        <div class="skill">
+            <span>01</span>
+            <h3>HTML & CSS</h3>
+            <p>DEVELOPMENT</p>
+        </div>
+
+        <div class="skill">
+            <span>02</span>
+            <h3>UI / UX Design</h3>
+            <p>DESIGN</p>
+        </div>
+
+        <div class="skill">
+            <span>03</span>
+            <h3>Photography</h3>
+            <p>VISUAL</p>
+        </div>
+
+        <div class="skill">
+            <span>04</span>
+            <h3>Video Editing</h3>
+            <p>CREATIVE</p>
+        </div>
+
+    </section>
+
+
+    <section class="contact" id="contact">
+
+        <div class="tag">HAVE A PROJECT?</div>
+
+        <h2>
+            Let's create
+            <span>something great.</span>
+        </h2>
+
+        <a href="mailto:hello@example.com" class="btn primary">
+            Contact Me ↗
+        </a>
+
+    </section>
+
+
     <footer>
 
         <div class="logo">AZ<span>.</span></div>
 
-        <p>© 2026 Azam Studio. Built with HTML & CSS.</p>
+        <p>© 2026 AZAM Studio — Built with HTML & CSS</p>
 
-        <div class="social">
-            <a href="#">IG</a>
-            <a href="#">GH</a>
-            <a href="#">TK</a>
-        </div>
+        <p>IG · GH · TK</p>
 
     </footer>
 
